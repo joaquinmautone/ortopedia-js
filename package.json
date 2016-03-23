@@ -1,0 +1,15 @@
+{
+  "name": "ortopedia",
+  "version": "0.1.0",
+  "main"    : "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron-prebuilt": "^0.35.1",
+    "fs-jetpack": "^0.7.0"
+  },
+  "dependencies": {
+    "mysql": "^2.9.0"
+  }
+}

@@ -1,0 +1,22 @@
+<div class="jqGrid_wrapper">
+    <jq-template-grid source="vm.api.getProducts" caption="'Productos'" cntrl="vm.cntrl" 
+        page="50" height="480">
+        <jq-template-grid-column name="id" index="id" width="50" label="Editar" sortable="false" 
+            align="center" search="false" template="rowActionsTemplate" />
+        <jq-template-grid-column name="id" index="id" width="60" label="ID" key="true" sorttype="integer" />
+        <jq-template-grid-column name="name" index="name" width="150" label="Nombre" />
+        <jq-template-grid-column name="description" index="description" width="250" label="Descripción" sortable="false" />
+        <jq-template-grid-column name="priceSale" index="priceSale" width="100" label="Precio de Venta" 
+            search="false" sorttype="number" formatter="number" />
+        <jq-template-grid-column name="priceRent" index="priceRent" width="100" label="Precio de Alquiler" 
+            search="false" sorttype="number" formatter="number" />
+        <jq-template-grid-column name="stock" index="stock" width="50" label="Stock" search="false" 
+            sorttype="integer" />
+    </jq-template-grid>
+</div>
+
+<script type="text/ng-template" id="rowActionsTemplate">
+    <span class="btn-group">
+        <a class="btn btn-link" ng-click="edit()"><i class="fa fa-pencil-square-o"></i></a>
+    </span>
+</script>

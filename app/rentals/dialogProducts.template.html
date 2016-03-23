@@ -1,0 +1,64 @@
+
+
+<md-dialog aria-label="Productos para alquilar"  ng-cloak>
+  <form name="dialog">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Productos para alquilar</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancelDialog()">
+          <i class="fa fa-2x fa-remove"></i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+
+        <div class="md-block" flex-gt-xs>
+            <md-autocomplete required  
+            md-input-name="product"
+            md-input-minlength="0"
+            md-input-maxlength="50"
+            md-selected-item="selectedProduct.product"
+            md-search-text="searchProduct"
+            md-items="item in products"
+            md-item-text="item.name"
+            md-floating-label="Producto"
+            md-search-text-change="getProductsByName(searchProduct)">
+            <md-item-template>
+              <span md-highlight-text="searchProduct">
+                {{item.name}}
+              </span>
+            </md-item-template>
+            <div class="validation-messages" ng-messages="dialog.product.$error" 
+              ng-if="dialog.product.$touched">
+              <div ng-message="required">Debes seleccionar un producto.</div>
+            </div>
+          </md-autocomplete>
+        </div>
+
+        <md-input-container md-no-float class="m-t-36">
+            <label>Cantidad</label>
+            <input name="quantity" ng-model="selectedProduct.quantity" type="number" 
+              min="1" max="{{selectedProduct.product.stock}}">
+            <div class="validation-messages" ng-messages="dialog.quantity.$error">
+              <div ng-message="required">Debes seleccionar al menos una unidad del producto.</div>
+              <div ng-message="min">Debes seleccionar al menos una unidad del producto.</div>
+              <div ng-message="max">No hay stock del producto seleccionado.</div>
+            </div>
+        </md-input-container>  
+        
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" layout-align="center center" class="m-b-16">
+
+      <md-button class="md-rised md-primary" ng-click="addProduct()" type="submit">
+          <i class="fa fa-plus p-r-6"></i>Agregar
+      </md-button>
+
+    </md-dialog-actions>
+
+  </form>
+</md-dialog>
+

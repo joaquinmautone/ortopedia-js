@@ -1,0 +1,26 @@
+<form name="vm.form" novalidate>
+    <md-content layout-padding class="autoScroll">
+        <md-input-container>
+            <label>Descripción</label>
+            <input ng-model="vm.selected.description" type="text" ng-maxlength="100">
+        </md-input-container>
+        <md-input-container>
+            <label>Importe</label>
+            <input ng-model="vm.selected.amount" type="number" min="1">
+        </md-input-container>                              
+    </md-content>
+</form> 
+
+<section class="m-t-26" layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+    <md-button class="md-raised md-primary" ng-click="vm.form.$valid && vm.createExpense()" 
+        ng-show="!vm.selected.id">Agregar</md-button>
+    <md-button class="md-raised md-primary" ng-click="vm.form.$valid && vm.saveExpense()" 
+        ng-show="vm.selected.id">Modificar</md-button>
+    <md-button class="md-raised md-accent" ng-click="vm.cancelEdit()">Cancelar</md-button>
+    <md-button class="md-raised md-warn" ng-click="vm.deleteExpense()" ng-show="vm.selected.id">
+        Eliminar
+    </md-button>
+</section>
+
+
+                      

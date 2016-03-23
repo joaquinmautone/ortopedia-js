@@ -1,0 +1,101 @@
+<form name="vm.form" novalidate>
+
+      <div layout-gt-xs="row">
+
+        <span>{{vm.selected.products | json}}</span>
+
+        <div class="md-block" flex-gt-xs>
+            <md-autocomplete required  
+            md-input-name="customer"
+            md-input-minlength="2"
+            md-input-maxlength="50"
+            md-selected-item="vm.selected.customer"
+            md-search-text="vm.searchCustomer"
+            md-items="item in vm.customers"
+            md-item-text="(item.firstname + ' ' + item.lastname)"
+            md-floating-label="Cliente"
+            md-search-text-change="vm.getCustomersByName()">
+            <md-item-template>
+              <span md-highlight-text="vm.searchCustomer">
+                {{(item.firstname + ' ' + item.lastname)}}
+              </span>
+            </md-item-template>
+            <div class="validation-messages" ng-messages="vm.form.customer.$error" 
+              ng-if="vm.form.customer.$touched">
+              <div ng-message="required">Debes seleccionar un cliente.</div>
+            </div>
+          </md-autocomplete>
+        </div>
+
+        <div class="md-block m-t-18">
+          <md-datepicker name="dateFrom" ng-model="vm.selected.dateFrom" md-placeholder="Desde"
+            required md-max-date="maxDate">
+          </md-datepicker>
+          <div class="validation-messages" ng-messages="vm.form.dateFrom.$error"  
+            ng-if="vm.form.dateFrom.$touched">
+            <div ng-message="valid">El texto ingresado no es una fecha válida.</div>
+            <div ng-message="required">La fecha de finalización del alquiler es obligatoria.</div>
+            <div ng-message="maxdate">El período de alquier debe ser de al menos 15 días.</div>
+          </div>
+        </div>
+
+        <div class="md-block m-t-18">
+          <md-datepicker name="dateTo" ng-model="vm.selected.dateTo" md-placeholder="Hasta"
+          required md-max-date="maxDate">
+          </md-datepicker>
+          <div class="validation-messages" ng-messages="vm.form.dateTo.$error"
+            ng-if="vm.form.dateTo.$touched">
+            <div ng-message="valid">El texto ingresado no es una fecha válida.</div>
+            <div ng-message="required">La fecha de comienzo del alquiler es obligatoria.</div>
+            <div ng-message="maxdate">El período de alquier debe ser de al menos 15 días.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="jqGrid_wrapper">
+          <jq-template-grid source="vm.selected.products" caption="vm.grids.productsRental.caption" 
+            cntrl="vm.grids.cntrl" page="vm.grids.productsRental.pageSize" height="200">
+              <jq-template-grid-column name="id" index="id" width="50" label="Editar" sortable="false" 
+                align="center" search="false" template="rowActionsTemplate" width="100" />
+              <jq-template-grid-column name="id" index="id" width="100" label="ID" key="true" 
+                sorttype="integer" />
+              <jq-template-grid-column name="name" index="name" width="200" label="Nombre" />
+              <jq-template-grid-column name="description" index="description" width="300" 
+                label="Descripción" sortable="false" />
+              <jq-template-grid-column name="priceSale" index="priceSale" width="120" 
+                label="Precio de Venta" search="false" sorttype="number" formatter="number" />
+              <jq-template-grid-column name="priceRent" index="priceRent" width="130" label="Precio de Alquiler" search="false" sorttype="number" formatter="number" />
+              <jq-template-grid-column name="stock" index="stock" width="60" label="Stock" search="false"
+                sorttype="integer" />
+          </jq-template-grid>
+      </div>
+
+      <section layout="row" layout-sm="column" layout-wrap class="m-t-16">
+        <div flex="30">
+          <md-button class="md-raised md-primary" ng-click="vm.showProducts($event)">
+            <i class="fa fa-plus p-r-6"></i>Agregar Producto
+          </md-button>
+        </div>
+        <div flex="40"></div>
+        <div flex="30">
+          <h3 ng-if="vm.selected.amount" class="pull-right">Importe total: {{vm.selected.amount}}</h3>  
+        </div>        
+      </section>    
+
+</form> 
+
+<section class="m-t-26" layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+    <md-button class="md-raised md-primary" ng-click="vm.form.$valid && vm.createRental()" ng-show="!vm.selected.id">Aceptar</md-button>
+    <md-button class="md-raised md-primary" ng-click="vm.form.$valid && vm.saveRental()" ng-show="vm.selected.id">Modificar</md-button>
+    <md-button class="md-raised md-accent" ng-click="vm.cancelEdit()">Cancelar</md-button>
+    <md-button class="md-raised md-warn" ng-click="vm.deleteRental()" ng-show="vm.selected.id">Eliminar</md-button>
+</section>
+
+<script type="text/ng-template" id="rowActionsTemplate">
+    <span class="btn-group">
+        <a class="btn btn-link" ng-click="deleteProduct()" alt="Quitar producto">
+          <i class="fa fa-remove"></i>
+        </a>
+    </span>
+</script>

@@ -1,0 +1,26 @@
+<div class="jqGrid_wrapper">
+    <jq-template-grid source="vm.api.getRentals" caption="'Alquileres'" cntrl="vm.cntrl" 
+        page="50" height="480">
+        <jq-template-grid-column name="id" index="id" width="50" label="Ver" sortable="false" 
+            align="center" search="false" template="rowActionsTemplate" />
+        <jq-template-grid-column name="id" index="id" width="60" label="ID" key="true" sorttype="integer" />
+        <jq-template-grid-column name="customer" index="customer" width="250" label="Cliente"
+            sortable="false" />
+        <jq-template-grid-column name="amount" index="amount" width="100" label="Importe" search="false"
+            sorttype="number" formatter="number" />
+        <jq-template-grid-column name="dateFrom" index="dateFrom" width="50" label="Desde" formatter="date"
+            formatoptions="{ srcformat: 'm/d/Y', newformat: 'd/m/Y' }" sorttype="date"
+            searchoptions="datepicker" />
+        <jq-template-grid-column name="dateTo" index="dateTo" width="50" label="Hasta" formatter="date"
+            formatoptions="{ srcformat: 'm/d/Y', newformat: 'd/m/Y' }" sorttype="date"
+            searchoptions="datepicker" />
+        <jq-template-grid-column name="delivered" index="delivered" width="100" label="Devuelto"
+             search="true" sorttype="number" align="center" />
+    </jq-template-grid>
+</div>
+
+<script type="text/ng-template" id="rowActionsTemplate">
+    <span class="btn-group">
+        <a class="btn btn-link" ng-click="edit()"><i class="fa fa-eye"></i></a>
+    </span>
+</script>

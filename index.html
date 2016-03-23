@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="app">
+    <title>La Ortopedia</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"gt;
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="./assets/font-awesome-4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="./bower_components/angular-material/angular-material.css" />
+    <!-- Bootstrap Core CSS -->
+    <link href="./bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="./bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+    <!-- jqGrid CSS -->    
+    <link href="./bower_components/jqGrid/css/ui.jqgrid.css" rel="stylesheet">
+    <link href="./bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css" rel="stylesheet">
+    <!-- endbuild -->
+    
+<body>
+
+    <div id="wrapper" ng-cloak>
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">La Ortopedia</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li id="today"></li>
+                <li><a href onclick="window.top.close(); return false"><i class="fa fa-sign-out fa-fw"></i> Salir</a></li>
+            </ul>
+            <!-- /.navbar-top-links -->
+
+        </nav>
+
+            <section layout="row" flex>
+
+                <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" 
+                    md-is-locked-open="$mdMedia('gt-md')">
+
+                    <ul class="nav" id="side-menu">                        
+                        <li>
+                            <a ui-sref="dashboard"><i class="fa fa-home fa-fw"></i> Inicio</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-cart-plus fa-fw"></i> Ventas<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a ui-sref="sale">Nueva Venta</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="sales">Historial</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-wheelchair fa-fw"></i> Alquileres<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a ui-sref="rental">Nuevo Alquiler</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="rentals">Historial</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-tasks fa-fw"></i> Productos<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a ui-sref="product">Nuevo</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="products">Todos los productos</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> Clientes<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a ui-sref="customer">Nuevo</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="customers">Todos los clientes</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> Ordenes de BPS<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a ui-sref="order">Nueva</a>
+                                </li>
+                                <li>
+                                    <a ui-sref="orders">Historial</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Administración<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#">Gastos <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a ui-sref="expense">Nuevo</a>
+                                        </li>
+                                        <li>
+                                            <a ui-sref="expenses">Historial</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>
+                                <!-- <li>
+                                    <a ui-sref="credits">Credito interno</a>
+                                </li> -->
+                                <li>
+                                    <a ui-sref="closeDay">Cerrar caja diaria</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>                        
+                    </ul>
+
+                </md-sidenav>
+
+                <md-content layout-padding id="page-wrapper" class="autoScroll">
+                <!-- <div id="page-wrapper"> -->
+
+                    <div ui-view></div>
+
+                </md-content>
+                <!-- /#page-wrapper -->
+
+        </section>
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script type="text/javascript">
+        window.$ = window.jQuery = require('./bower_components/jquery/dist/jquery.min.js');
+        document.getElementById("today").innerHTML = new Date().toLocaleDateString("es-UY");
+    </script>
+    <!-- Bootstrap Core JavaScript -->
+    <script type="text/javascript" src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script type="text/javascript" src="./bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <!-- jqGrid -->
+    <script type="text/javascript" src="./bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="./bower_components/jquery-ui/jquery.ui.datepicker-es.js"></script>
+    <script type="text/javascript" src="./bower_components/jqGrid/js/grid.locale-es.js"></script>
+    <script type="text/javascript" src="./bower_components/jqGrid/js/jquery.jqGrid.min.js"></script>
+    <!-- build:js -->
+    <script type="text/javascript" src="./bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-animate/angular-animate.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-aria/angular-aria.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-messages/angular-messages.min.js"></script>
+    <!-- endbuild -->   
+    <!-- build:app app/app.js -->
+    <script type="text/javascript" src="./app/app.js"></script>
+    <script type="text/javascript" src="./app/config.js"></script>        
+    <!-- endbuild -->   
+
+    <script type="text/javascript" src="./app/directives/jqTemplateGrid.directive.js"></script>
+    <script type="text/javascript" src="./app/dashboard/dashboard.controller.js"></script>
+
+    <script type="text/javascript" src="./app/customers/ci.directive.js"></script>
+    <script type="text/javascript" src="./app/customers/rut.directive.js"></script>
+    <script type="text/javascript" src="./app/customers/customer.service.js"></script>
+    <script type="text/javascript" src="./app/customers/customer.controller.js"></script> 
+    <script type="text/javascript" src="./app/customers/customers.controller.js"></script> 
+
+    <script type="text/javascript" src="./app/expenses/expenses.service.js"></script>
+    <script type="text/javascript" src="./app/expenses/expense.controller.js"></script> 
+    <script type="text/javascript" src="./app/expenses/expenses.controller.js"></script> 
+
+    <script type="text/javascript" src="./app/products/product.service.js"></script>
+    <script type="text/javascript" src="./app/products/product.controller.js"></script>    
+    <script type="text/javascript" src="./app/products/products.controller.js"></script>    
+
+    <script type="text/javascript" src="./app/rentals/rentals.service.js"></script>
+    <script type="text/javascript" src="./app/rentals/rental.controller.js"></script>    
+    <script type="text/javascript" src="./app/rentals/rentals.controller.js"></script>
+
+    <script type="text/javascript" src="./app/sales/sales.service.js"></script>
+    <script type="text/javascript" src="./app/sales/sale.controller.js"></script>    
+    <script type="text/javascript" src="./app/sales/sales.controller.js"></script>    
+
+</body>
+
+</html>

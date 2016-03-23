@@ -1,0 +1,21 @@
+<div class="jqGrid_wrapper">
+    <jq-template-grid source="vm.api.getCustomers" caption="'Clientes'" cntrl="vm.cntrl" 
+        page="50" height="480">
+        <jq-template-grid-column name="id" index="id" width="50" label="Editar" sortable="false" 
+            align="center" search="false" template="rowActionsTemplate" />
+        <jq-template-grid-column name="id" index="id" width="60" label="ID" key="true" sorttype="integer" />
+        <jq-template-grid-column name="firstname" index="firstname" width="150" label="Nombre" />
+        <jq-template-grid-column name="lastname" index="lastname" width="150" label="Apellido" />        
+        <jq-template-grid-column name="ci" index="ci" width="100" label="CI" sortable="false" />
+        <jq-template-grid-column name="phone" index="phone" width="100" label="Teléfono" sortable="false" search="false" sorttype="integer" />
+        <jq-template-grid-column name="adress" index="adress" width="150" label="Dirección" sortable="false" search="false" />
+        <jq-template-grid-column name="ruc" index="ruc" width="100" label="Rut" sortable="false" search="false" sorttype="integer" />
+        <jq-template-grid-column name="email" index="email" width="150" label="Email" sortable="false" search="false" />
+    </jq-template-grid>
+</div>
+
+<script type="text/ng-template" id="rowActionsTemplate">
+    <span class="btn-group">
+        <a class="btn btn-link" ng-click="edit()"><i class="fa fa-pencil-square-o"></i></a>
+    </span>
+</script>
